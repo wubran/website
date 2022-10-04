@@ -1,5 +1,5 @@
-var canvas = document.getElementById('topLines');
-var ctx = canvas.getContext('2d');
+var lineCanvas = document.getElementById('topLines');
+var lineCtx = lineCanvas.getContext('2d');
 
 items = []
 
@@ -8,14 +8,14 @@ var mouseX = 0;
 var mouseY = 0;
 var mousemode = 0;
 var movemode = 1;
-var linelimit = canvas.width/3;
+var linelimit = lineCanvas.width/3;
 const pointnumber = 50;
 var linewidth = 1;
 var dotradius = 3
 var lines = true;
 var dots = true;
 
-canvasResize();
+lineCanvasResize();
 
 class Item{
     constructor(x, y, angle){
@@ -37,13 +37,13 @@ class Item{
         this.x += this.vx;
         this.y += this.vy;
 
-        if(this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0){
+        if(this.x > lineCanvas.width || this.x < 0 || this.y > lineCanvas.height || this.y < 0){
             newdot();
             items.splice(i, 1);
         }
     }
     draw(){
-        let a = (1.5*(1-this.y/canvas.height))**2
+        let a = (1.5*(1-this.y/lineCanvas.height))**2
         for(let item of items){
             if(Math.abs(this.x-item.x)<linelimit && Math.abs(this.y-item.y)<linelimit){
                 var dist = Math.hypot(this.x-item.x, this.y-item.y);
@@ -51,31 +51,31 @@ class Item{
                 if(0<distnt){
                     var d1st = (distnt/linelimit);
                     if(lines){
-                        //ctx.strokeStyle = "rgba(255,255,255,"+d1st*0.6+")";
-                        ctx.lineWidth = linewidth;
-                        ctx.lineJoin = "round";
+                        //lineCtx.strokeStyle = "rgba(255,255,255,"+d1st*0.6+")";
+                        lineCtx.lineWidth = linewidth;
+                        lineCtx.lineJoin = "round";
 
-                        ctx.beginPath();
+                        lineCtx.beginPath();
 
-                        var grad= ctx.createLinearGradient(this.x, this.y, item.x, item.y);
+                        var grad= lineCtx.createLinearGradient(this.x, this.y, item.x, item.y);
                         grad.addColorStop(0, this.color + (d1st*0.8  *  a)+")");
                         grad.addColorStop(1, this.color + "0)");
-                        ctx.strokeStyle = grad;
-                        ctx.beginPath();
-                        ctx.moveTo(this.x, this.y);
-                        ctx.lineTo(item.x, item.y);
+                        lineCtx.strokeStyle = grad;
+                        lineCtx.beginPath();
+                        lineCtx.moveTo(this.x, this.y);
+                        lineCtx.lineTo(item.x, item.y);
 
-                        ctx.closePath();
-                        ctx.stroke();
+                        lineCtx.closePath();
+                        lineCtx.stroke();
                     }
                 }
             }
         }
         if(dots){
-            ctx.fillStyle = this.color+a+")";
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, dotradius, 0, 2 * Math.PI);
-            ctx.fill();
+            lineCtx.fillStyle = this.color+a+")";
+            lineCtx.beginPath();
+            lineCtx.arc(this.x, this.y, dotradius, 0, 2 * Math.PI);
+            lineCtx.fill();
         }
     }
 }
@@ -86,21 +86,21 @@ function newdot(){
     var x;
     var angle = 2*Math.random()*Math.PI/3;
     if(Math.random()<0.5){
-        x = rando*canvas.width;
+        x = rando*lineCanvas.width;
         if(Math.random()<0.5){
             y = 0;
             angle += Math.PI/6;
         }else{
-            y = canvas.height;
+            y = lineCanvas.height;
             angle += 7*Math.PI/6;
         }
     } else{
-        y = rando*canvas.height;
+        y = rando*lineCanvas.height;
         if(Math.random()<0.5){
             x = 0;
             angle += 5*Math.PI/3;
         }else{
-            x = canvas.width;
+            x = lineCanvas.width;
             angle += 2*Math.PI/3;
         }
     }
@@ -109,11 +109,11 @@ function newdot(){
 }
 
 function fillscreen(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    lineCtx.clearRect(0, 0, lineCanvas.width, lineCanvas.height);
 }
 
 for(var i = 0; i < pointnumber; i++){
-    items.push(new Item(Math.random()*canvas.width, Math.random()*canvas.height, Math.random()*2*Math.PI))
+    items.push(new Item(Math.random()*lineCanvas.width, Math.random()*lineCanvas.height, Math.random()*2*Math.PI))
     // newdot();
 }
 setInterval(function(){
@@ -136,11 +136,11 @@ setInterval(function(){
     }
 }, 10);
 
-window.onresize = canvasResize;
+window.onresize = lineCanvasResize;
 
-function canvasResize() {
-    canvas.width = window.innerWidth;
-    canvas.height = 1*window.innerHeight;
-    linelimit = canvas.width/10;
+function lineCanvasResize() {
+    lineCanvas.width = window.innerWidth;
+    lineCanvas.height = 1*window.innerHeight;
+    linelimit = lineCanvas.width/10;
     dotradius  = linelimit/20;
 }
