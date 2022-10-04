@@ -1,0 +1,166 @@
+:root{
+    --dark: rgb(24,26,41);
+    --semidark: rgb(32,34,55);
+    --medium: rgb(96,102,165);
+    --semilight: rgb(140,142,183);
+    --light: rgb(220,220,255);
+  
+    --accent: rgb(255,150,50);
+    /* --topbarH: 45px; */
+}
+@font-face {
+    font-family: aquaFont;
+    src: url(aqua.ttf);
+}
+
+::-webkit-scrollbar{
+    width: 1em;
+}
+::-webkit-scrollbar-track{
+    background: var(--semidark);
+    border-left: 1px solid var(--semilight);
+}
+::-webkit-scrollbar-thumb{
+    background: var(--medium);
+    border-left: 1px solid var(--semilight);
+}
+::-webkit-scrollbar-thumb:hover{
+    background: var(--accent)
+}
+body{
+    background-color: var(--dark);
+    color: var(--light);
+    margin: 0;
+}
+.topBar{
+    font-family: aquaFont;
+    background-color: var(--semidark);
+    position:absolute;
+    width:85%;
+    left:15%;
+    top:0;
+    display:flex;
+    justify-content: space-evenly;
+    /* height:80px; */
+    padding:1.4vw 0px 0.8vw 0px;
+    border-style:none none solid none;
+    border-width: 1px;
+    border-color: var(--semilight);
+}
+.topBrian{
+    background-color: var(--semidark);
+    font-family: aquaFont;
+    position:sticky;
+    top:0px;
+    height:5vw;
+    width:15%;
+    z-index:200;
+    border-style:none solid solid none;
+    border-bottom-right-radius: 10px;
+    border-width: 1px;
+    border-color: var(--semilight);
+    padding-top: 1.5vw;
+    transition: border-color 0.3s ease;
+}
+.topLink{
+    height: fit-content;
+}
+.topbutt{
+    padding:0px;
+    background-color: inherit;
+    color:var(--light);
+    width:100%;
+    cursor:pointer;
+    border:0px;
+}
+.topLabel{
+    margin:0;
+    text-align: center;
+    font-size: 1.6vw;
+}
+.topBrianLabel{
+    margin:0;
+    text-align: center;
+    font-size: 2.6vw;
+    transition: color 0.3s ease;
+}
+.buttonLine{
+    margin: 0.6vw auto;
+    width:20%;
+    border-color: var(--semilight);
+    transition:width 0.3s ease, border-color 0.3s ease;
+}
+button:hover hr{
+    width: 80%;
+    border-color: var(--accent);
+}
+button:hover h2.topBrianLabel{
+    color: var(--accent);
+}
+button:hover .topBrian{
+    border-color: var(--accent);
+}
+.splashZone{
+    height: 100vh;
+    margin: auto;
+    width: 90%;
+}
+.topLines{
+    position:absolute;
+    width:100%;
+    height:100vh;
+    z-index: 0;
+}
+.introSplash{
+    position: absolute;
+    top:70vh;
+    text-align: center;
+    /* color:var(--accent); */
+    font-size: 12vh;
+    font-family: aquaFont;
+}
+.splash0{
+    z-index: 4;
+}
+.splash1{
+    color: var(--accent);
+    z-index: 2;
+}
+.splash2{
+    color: var(--semilight);
+    z-index: 3;
+}
+h1{
+    margin:0;
+}
+.displayRow{
+    display:inline-flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 40px;
+}
+.displayBox{
+    z-index: 5;
+    position:relative;
+    background-color: var(--semidark);
+    display:block;
+    width: 40%;
+    border-style:solid;
+    border-width: 1px;
+    border-color: var(--semilight);
+    border-radius: 8px;
+    padding-top:40%;
+    transition:border-color 0.3s ease;
+}
+.displayBox:hover{
+    border-color: var(--accent);
+}
+.displayCanvas{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
