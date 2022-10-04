@@ -116,7 +116,7 @@ button:hover .topBrian{
     top:70vh;
     text-align: center;
     /* color:var(--accent); */
-    font-size: 12vh;
+    font-size: min(8vw, 12vh);
     font-family: aquaFont;
 }
 .splash0{
@@ -159,6 +159,7 @@ h1{
     height: 20%;
     border-style:solid none none none;
     border-width: 1px;
+    border-color:var(--accent)
 }
 .displayCanvas{
     position:  absolute;
