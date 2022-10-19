@@ -37,7 +37,7 @@ class Item{
         this.x += this.vx;
         this.y += this.vy;
 
-        if(this.x > lineCanvas.width || this.x < 0 || this.y > lineCanvas.height || this.y < 0){
+        if(this.x > lineCanvas.width + linelimit || this.x < 0 - linelimit || this.y > lineCanvas.height + linelimit || this.y < 0 - linelimit){
             newdot();
             items.splice(i, 1);
         }
@@ -72,6 +72,11 @@ class Item{
             }
         }
         if(dots){
+            lineCtx.fillStyle = "rgb(24,26,41)";
+            lineCtx.beginPath();
+            lineCtx.arc(this.x, this.y, dotradius, 0, 2 * Math.PI);
+            lineCtx.fill();
+
             lineCtx.fillStyle = this.color+a+")";
             lineCtx.beginPath();
             lineCtx.arc(this.x, this.y, dotradius, 0, 2 * Math.PI);
@@ -117,18 +122,6 @@ for(var i = 0; i < pointnumber; i++){
     // newdot();
 }
 setInterval(function(){
-
-    // if(click){
-    // 	switch(mousemode){
-    // 		case 0:
-    // 			break;
-    // 		case 1:
-    // 			break;
-    // 		case 2:
-    // 			break;
-    // 	}
-    // }
-
     fillscreen();
     for(var i = 0; i < items.length; i++){
         items[i].draw();

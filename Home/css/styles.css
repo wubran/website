@@ -12,7 +12,6 @@
     font-family: aquaFont;
     src: url(aqua.ttf);
 }
-
 ::-webkit-scrollbar{
     width: 1em;
 }
@@ -25,7 +24,7 @@
     border-left: 1px solid var(--semilight);
 }
 ::-webkit-scrollbar-thumb:hover{
-    background: var(--accent)
+    background: var(--accent);
 }
 body{
     background-color: var(--dark);
@@ -33,14 +32,15 @@ body{
     margin: 0;
 }
 .topBar{
-    font-family: aquaFont;
+    z-index: 220;
+    /* font-family: aquaFont; */
     background-color: var(--semidark);
     position:absolute;
     width:85%;
     left:15%;
     top:0;
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     /* height:80px; */
     padding:1.4vw 0px 0.8vw 0px;
     border-style:none none solid none;
@@ -48,8 +48,9 @@ body{
     border-color: var(--semilight);
 }
 .topBrian{
+    /* transform-origin: top left; */
     background-color: var(--semidark);
-    font-family: aquaFont;
+    /* font-family: aquaFont; */
     position:sticky;
     top:0px;
     height:5vw;
@@ -62,8 +63,17 @@ body{
     padding-top: 1.5vw;
     transition: border-color 0.3s ease;
 }
+.topBrian:hover{
+    cursor:alias;
+}
+.topSegment{
+    flex-grow: 1;
+    margin: 0 2vw 0 2vw;
+    position:relative;
+}
 .topLink{
     height: fit-content;
+    text-decoration: none;
 }
 .topbutt{
     padding:0px;
@@ -72,11 +82,64 @@ body{
     width:100%;
     cursor:pointer;
     border:0px;
+    /* z-index: 200; */
 }
 .topLabel{
     margin:0;
     text-align: center;
     font-size: 1.6vw;
+}
+.topDropBox{
+    position:absolute;
+    left:-1em;
+    right:-1em;
+    top:100%;
+    overflow:hidden;
+    height:5000px;
+    pointer-events: none;
+    /* z-index: 255; */
+    /* margin:auto; */
+    /* width:inherit; */
+    /* background-color: brown; */
+}
+.topShiftBox{
+    pointer-events:all;
+    position:relative;
+    top:-250px;
+    /* background-color:var(--semidark); */
+    transition: top 0.3s ease;
+    transition-delay: 0.1s;
+}
+.topDrop{
+    pointer-events:all;
+    /* z-index: 255; */
+    background-color: var(--semidark);
+    border-color: var(--semilight);
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 4px;
+    width:fit-content;
+    margin:auto;
+    margin-bottom:5px;
+    margin-top:15px;
+    transition: margin-top 0.3s ease;
+    transition-delay: 0.1s;
+}
+.dropButt{
+    /* pointer-events:all; */
+    background-color: inherit;
+    border:none;
+}
+.topDrop:hover{
+    background-color: var(--medium);
+}
+.dropText{
+    color:var(--light);
+    font-family: aquafont;
+    font-size: 1.5vw;
+    margin: 0;
+    padding:10px;
+    text-align: center;
 }
 .topBrianLabel{
     margin:0;
@@ -89,10 +152,22 @@ body{
     width:20%;
     border-color: var(--semilight);
     transition:width 0.3s ease, border-color 0.3s ease;
+    transition-delay: 0.2s, 0.2s;
 }
-button:hover hr{
-    width: 80%;
+.topSegment:hover hr{
+    /* width: 80%; */
+    width: 100%;
     border-color: var(--accent);
+    transition-delay: 0s, 0s;
+}
+.topSegment:hover .topShiftBox{
+    top:0px;
+    transition-delay: 0.2s;
+}
+.topSegment:hover .topDrop{
+    margin-top:0px;
+    transition-delay: 0.4s;
+    /* transition-delay: 0.2s; */
 }
 button:hover h2.topBrianLabel{
     color: var(--accent);
